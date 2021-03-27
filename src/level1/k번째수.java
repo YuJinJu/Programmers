@@ -12,11 +12,11 @@ public class k번째수 {
         4 4 1 // 6 // 6 // 6
         1 7 3 // 1 5 2 6 3 7 4 // 1 2 3 4 5 6 7 // 3
         */
-        int [][] tmp = new int[commands.length][commands[0].length];
-
+        ///int [][] tmp = new int[commands.length][commands[0].length];
+        // String??
         for(int i=0;i<commands.length;i++){
             int cnt = 0;
-            for(int j=commands[i][0]-1;j<=commands[i][1]-1;j++){
+            for(int j=commands[i][0]-1;j<commands[i][1]-1;j++){
                 tmp[i][cnt] += array[j];
                 cnt++;
             }
