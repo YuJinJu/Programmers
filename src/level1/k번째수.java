@@ -7,27 +7,22 @@ public class k번째수 {
         int[] answer = new int [commands.length];
         /*
         1 5 2 6 3 7 4
-
+                //list
         2 5 3 // 5 2 6 3 // 2 3 5 6 // 5
         4 4 1 // 6 // 6 // 6
         1 7 3 // 1 5 2 6 3 7 4 // 1 2 3 4 5 6 7 // 3
         */
-        ///int [][] tmp = new int[commands.length][commands[0].length];
-        // String??
+
         for(int i=0;i<commands.length;i++){
-            int cnt = 0;
-            for(int j=commands[i][0]-1;j<commands[i][1]-1;j++){
-                tmp[i][cnt] += array[j];
-                cnt++;
+            ArrayList <Integer> list = new ArrayList<Integer>();
+            for(int j=commands[i][0]-1;j<=commands[i][1]-1;j++){
+
+                list.add(array[j]);
             }
-        }
+            Collections.sort(list);
 
-        for(int k=0;k<commands.length;k++){
-            Arrays.sort(tmp[k]);
-        }
-
-        for(int k=0;k<commands.length;k++){
-            answer[k] = tmp[k][commands[k][2]-1];
+            int b = commands[i][2]-1;
+            answer[i] = list.get(b);
         }
 
         return answer;
@@ -40,7 +35,7 @@ public class k번째수 {
         int[] array = {1, 5, 2, 6, 3, 7, 4};
         int[][] commands = { {2, 5, 3}, {4, 4, 1}, {1, 7, 3}};
 
-        solution(array,commands);
+        for(int i : solution(array,commands)) System.out.println(i);
     }
 
 }
