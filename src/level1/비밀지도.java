@@ -1,63 +1,50 @@
 package level1;
-import java.util.*;
+
+import java.util.Stack;
 
 public class 비밀지도 {
-        public static String[] solution(int n, int[] arr1, int[] arr2) {
-            String[] answer = {};
-            //비트연산자?
-            //하나라도 1이 있으면 1
-            //둘다 0이면 0
-        /*
-        1 0  1
-        0 1  1
-        0 0  0
-        1 1  1
-        */
+    public static String[] solution(int n, int[] arr1, int[] arr2) {
+        int[] a = new int[n];
+        String [] answer = new String[n];
+        Stack<Integer> stack = new Stack<>();
 
-            Stack<String> stack = new Stack<>();
-            //Stack<Integer> stack2 = new Stack<>();
+        for(int i=0;i<n;i++){
+            //비트연산
+            answer[i] = Integer.toBinaryString(arr1[i]|arr2[i]);
+/*
+            a[i] = (arr1[i]|arr2[i]);
 
-            String [] a1 = new String[n];
-            String [] a2 = new String[n];
-
-            for(int i=0;i<n;i++){ //한줄씩
-                //지도1
-                for(int j=0;j<n;j++){// 10010
-                    stack.push(String.valueOf(arr1[i]%2)); //거꾸로
-                    arr1[i]/=2;
-                }
-                a1[i] = stack.pop();
-                //for(int j=1;j<stack.size();j++) a1[i] += stack.pop();   //이진법 01001
-                while(!stack.isEmpty()) a1[i] += stack.pop();   //이진법   01001
-
-                //지도2
-                for(int j=0;j<n;j++){    //01111
-                    stack.push(String.valueOf(arr2[i]%2));
-                    arr2[i]/=2;
-                }
-                a2[i] = stack.pop();
-                //for(int j=0;j<stack.size() ;j++) a2[i] += stack.pop();   //이진법  11110
-                while(!stack.isEmpty()) a2[i] += stack.pop();   //이진법   11110
+            //이진법만들기
+            for(int j=0;j<n;j++){
+                stack.push(a[i]%2);
+                a[i] /= 2;
             }
+            //answer[i] = "";
+            answer[i]= Integer.toString(stack.pop());
+            while (!stack.empty()) answer[i] += Integer.toString(stack.pop());
 
-            String [] tmp = new String[n];
-            answer = new String[n];
+*/
 
-            for(int k=0;k<n;k++){
-                tmp[k] = String.valueOf(Integer.parseInt(a1[k]) | Integer.valueOf(a2[k]));
-                for(int l=0;l<tmp[k].length();l++){
-                    if(tmp[k].charAt(l)=='1') answer[k] += "#";
-                    else answer[k] +=" ";
-                }
-            }
-            return answer;
+            answer[i] = String.format("%" + n + "s", answer[i]); //자릿수대로 이진수 맞출 수 있다!!
+            answer[i] = answer[i].replace("0"," ");
+            answer[i]= answer[i].replace("1","#");
         }
-    
+        return answer;
+    }
+
     public static void main(String[] args) {
-        int n = 5;
+        //케이스1      "#####","# # #", "### #", "# ##", "#####"
+        int n1 = 5;
         int [] arr1 = {9, 20, 28, 18, 11};
         int [] arr2 = {30, 1, 21, 17, 28};
-        //출력	["#####","# # #", "### #", "# ##", "#####"]
-        System.out.println(solution(n,arr1,arr2));
+
+        //케이스2      "######", "### #", "## ##", " #### ", " #####", "### # "
+        int n2 =6;
+        int [] arr3 = {46, 33, 33 ,22, 31, 50};
+        int [] arr4 = {27 ,56, 19, 14, 14, 10};
+
+        //for(String i: solution(n1,arr1,arr2))  //케이스1
+        for(String i: solution(n2,arr3,arr4))    //케이스2
+        System.out.println(i);
     }
 }
