@@ -24,7 +24,6 @@ public class 비밀지도 {
             while (!stack.empty()) answer[i] += Integer.toString(stack.pop());
 
 */
-
             answer[i] = String.format("%" + n + "s", answer[i]); //자릿수대로 이진수 맞출 수 있다!!
             answer[i] = answer[i].replace("0"," ");
             answer[i]= answer[i].replace("1","#");
