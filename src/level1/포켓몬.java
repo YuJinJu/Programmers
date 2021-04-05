@@ -1,8 +1,6 @@
 package level1;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class 포켓몬 {
     public static int solution(int [] nums) {
